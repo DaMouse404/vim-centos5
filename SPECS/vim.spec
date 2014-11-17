@@ -2,7 +2,7 @@
 %if %{?WITH_SELINUX:0}%{!?WITH_SELINUX:1}
 %define WITH_SELINUX 1
 %endif
-%define desktop_file 1
+%define desktop_file 0
 %if %{desktop_file}
 %define desktop_file_utils_version 0.2.93
 %endif
@@ -221,8 +221,10 @@ Patch3012: vim-7.3-manpage-typo-668894-675480.patch
 Patch3013: vim-7.3-xsubpp-path.patch
 Patch3014: vim-manpagefixes-948566.patch
 
+Patch4001: vim-7.4-old-ac-types.patch
+
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: python-devel ncurses-devel gettext perl-devel
+BuildRequires: python-devel ncurses-devel gettext
 BuildRequires: perl(ExtUtils::Embed) perl(ExtUtils::ParseXS)
 BuildRequires: libacl-devel gpm-devel autoconf
 %if %{WITH_SELINUX}
@@ -533,6 +535,8 @@ perl -pi -e "s,bin/nawk,bin/awk,g" runtime/tools/mve.awk
 %patch3013 -p1
 %endif
 %patch3014 -p1
+
+%patch4001 -p1
 
 %build
 cp -f %{SOURCE5} .
