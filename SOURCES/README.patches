@@ -1,0 +1,613 @@
+Patches for Vim - Vi IMproved 7.4
+
+The files in this directory contain source code changes to fix problems
+in a released version of Vim.  Each file also contains an explanation of
+the problem that is fixed, like the message that was sent to the vim-dev
+maillist.
+
+The best is to apply the patches in sequence.  This avoids problems when
+a patch depends on a previous patch. 
+
+Before patching, change to the top Vim directory, where the "src" and
+"runtime" directories are located.
+Depending on the version of "patch" that you use, you may have add an
+argument to make it patch the right file:
+        patch -p < 7.4.001
+        patch -p0 < 7.4.001
+
+After applying a patch, you need to compile Vim.  There are no patches
+for binaries.
+
+Checksums for the patch files can be found in the file MD5.
+
+
+Individual patches for Vim 7.4:
+
+  SIZE  NAME     FIXES
+ 13179  7.4.001  'ic' doesn't work for patterns such as [a-z]
+  2522  7.4.002  pattern with two alternative look-behind matches doesn't match
+  2680  7.4.003  memory access error in Ruby syntax highlighting
+  7145  7.4.004  when closing a window fails ":bwipe" may hang
+  1391  7.4.005  "vaB" while 'virtualedit' is set selects the wrong area
+  1952  7.4.006  mkdir("foo/bar/", "p") gives an error message
+  2538  7.4.007  creating a preview window on startup messes up the screen
+  2176  7.4.008  new regexp engine can't be interrupted
+  2051  7.4.009  too easy to write a file was not decrypted (yet)
+  2307  7.4.010  (after 7.4.006) crash with invalid argument to mkdir()
+  2270  7.4.011  cannot find out if "acl" and "xpm" features are supported
+  6180  7.4.012  MS-Windows: resolving multi-bye shortcut does not work
+  2986  7.4.013  MS-Windows: File name buffer too small for utf-8
+  2671  7.4.014  MS-Windows: check for writing to device does not work
+  3135  7.4.015  MS-Windows: Detecting node type fails for multi-byte chars
+  5999  7.4.016  MS-Windows: File name completion has problem with Chinese
+  2319  7.4.017  ":help !!" does not find the "!!" tag in the help file
+  1400  7.4.018  when completing item becomes unselected
+  1948  7.4.019  file name completion fails with Chinese characters
+  2586  7.4.020  NFA engine matches too much with \@>
+  2806  7.4.021  NFA regexp: Using \ze may result in wrong end
+  4209  7.4.022  deadlock while exiting, because of allocating memory
+  1704  7.4.023  MS-Windows: warning for 64 bit type
+  1992  7.4.024  current user cannot always use the undo file he created
+  2074  7.4.025  reading before start of a string
+  1710  7.4.026  clang warning for int shift overflow
+  2815  7.4.027  valgrind error when using CTRL-X CTRL-F at start of the line
+ 27323  7.4.028  equivalence classes are not working for multi-byte characters
+  1837  7.4.029  an error in a pattern is reported twice
+  2724  7.4.030  the -mno-cygwin argument is no longer supported by Cygwin
+  1748  7.4.031  ":diffoff!" resets options even when 'diff' is not set
+  2629  7.4.032  NFA engine does not match the NUL character
+  3610  7.4.033  if terminal has 20 lines test 92 and 93 overwrite input file
+  5336  7.4.034  using "p" in Visual block mode only changes the first line
+  1696  7.4.035  MS-Windows: mouse pointer flickers when going to Normal mode
+  7996  7.4.036  NFA engine does not capture group correctly when using \@>
+  4274  7.4.037  "\ze" in a sub-pattern does set the end of the match
+  3579  7.4.038  Using "zw" and "zg" when 'spell' is off give confusing error
+  6108  7.4.039  MS-Windows: < MSCV10 can't handle symlinks to a directory
+  2320  7.4.040  error on exit when variable holds reference to a script scope
+  1695  7.4.041  Visual selection does not remain after being copied over
+  2104  7.4.042  after ":setlocal" 'spell'/'spellang' :spelldump doesn't work
+  2920  7.4.043  VMS can't handle long function names
+  2134  7.4.044  can't build with old MSVC
+  3167  7.4.045  substitute() has a problem with pattern starting with "\ze".
+  2147  7.4.046  can't use Tcl 8.6
+  1685  7.4.047  input() does not work in a function invoked by a mapping
+  4441  7.4.048  recent clang version complains about -fno-strength-reduce
+  2145  7.4.049  in Ex mode substitute prompt is wrong with line numbers
+  2605  7.4.050  "gn" may select too much when there are two matching lines
+  2068  7.4.051  syntax highlighting a Yaml file causes a crash
+  5890  7.4.052  cursor may end up in the wrong position when auto-formatting
+  1251  7.4.053  test75 has a wrong header
+  1441  7.4.054  reading past end of the 'stl' string
+  4758  7.4.055  Mac: Where macros are defined depends on the system
+  1651  7.4.056  Mac: Compilation problem with OS X 10.9 Mavericks
+  7773  7.4.057  byteidx() does not work for composing characters
+  2094  7.4.058  warnings on 64 bit Windows
+  1479  7.4.059  set_last_cursor() may encounter w_buffer being NULL
+  3582  7.4.060  declaration has wrong return type for PyObject_SetAttrString()
+  4688  7.4.061  (after 7.4.056) configure check in the wrong place
+  2634  7.4.062  (after 7.4.061) wrong configure check for AvailabilityMacros.h
+  3619  7.4.063  crash when using invalid key in Python dictionary
+  5347  7.4.064  in Visual block mode replacing with CR does not break lines
+  2117  7.4.065  the character typed at the hit-enter prompt is recorded twice
+  9483  7.4.066  MS-Windows: swap file name wrong if colon in file name
+  4139  7.4.067  CTRL-\ CTRL-O moves the cursor after inserting comment leader
+  5093  7.4.068  cannot build Vim on Mac with non-Apple compilers
+ 73551  7.4.069  cannot right shift comment lines starting with #
+  1387  7.4.070  (after 7.4.069) can't compile with tiny features
+ 38365  7.4.071  (after 7.4.069) passing limits around too often
+  1748  7.4.072  crash when using Insert mode completion
+ 11426  7.4.073  setting undolevels for one buffer changes undo in another
+  2054  7.4.074  when undo'ing all and making a change, undo structure is wrong
+  9907  7.4.075  locally setting 'undolevels' is not tested
+  1894  7.4.076  "cgn" does not wrap around the end of the file
+  2216  7.4.077  DOS installer creates shortcut without a path
+  3552  7.4.078  MSVC 2013 is not supported
+ 13657  7.4.079  a script cannot detect whether 'hlsearch' highlighting is on
+  1873  7.4.080  (after 7.4.079) missing documentation for v:hlsearch
+  1659  7.4.081  (after 7.4.078) wrong logic when ANALYZE is "yes"
+ 11034  7.4.082  using "gf" in a changed buffer suggests adding "!"
+  4493  7.4.083  hard to avoid adding a used pattern to the search history
+  5971  7.4.084  Python: interrupt not being properly discarded
+  3581  7.4.085  can't move cursor when inserting text in Visual block mode
+  4786  7.4.086  can't skip over expression when not evaluating for dict member
+  1770  7.4.087  compiler warning on 64 bit Windows systems
+ 16587  7.4.088  Asian characters are always marked as spell errors
+  1397  7.4.089  Vim doesn't set the security context on a renamed file
+  7859  7.4.090  Win32: no completion if dir name contains an exclamation mark
+  1926  7.4.091  (after 7.4.089) missing semicolon
+  1697  7.4.092  (after 7.4.088) can't build small version
+  2993  7.4.093  configure can't use LuaJIT on ubuntu 12.04
+  4837  7.4.094  configure may not find that -lint is needed for gettext()
+  3138  7.4.095  (after 7.4.093) regexp for LuaJIT version doesn't work on BSD
+  2294  7.4.096  can't change directory to an UNC path
+  1615  7.4.097  unexpected behavior change related to 'virtualedit'
+  8357  7.4.098  error for line numbers out of range when using ":'<,'>del"
+  3122  7.4.099  append in blockwise Visual mode with "$" is wrong
+  3069  7.4.100  NFA regexp doesn't handle backreference correctly
+  2899  7.4.101  using \1 in pattern goes one line too far
+  2128  7.4.102  crash when interrupting "z="
+  3846  7.4.103  dos installer escapes spaces in the diff command wrong
+  2823  7.4.104  ":help s/\_" reports an internal error
+  1792  7.4.105  completing a tag pattern may give an error for invalid pattern
+  1971  7.4.106  can't build with Ruby using Cygwin
+ 21498  7.4.107  Python try/catch doesn't catch Vim error in vim.eval()
+  5478  7.4.108  "zG" and "zW" leave temp files around on MS-Windows
+  3775  7.4.109  ColorScheme autocommand matches with the current buffer name
+  3703  7.4.110  "gUgn" cannot be repeeated
+  1709  7.4.111  memory leak in Python OptionsAssItem
+  1862  7.4.112  MS-Windows: defaults for 'dir' and 'bdir' do not include $TEMP
+  2561  7.4.113  MSVC static analysis gives warnings
+  3353  7.4.114  new GNU make directory change messages are different
+  1633  7.4.115  Zsh: expanding ~abc fails when the result contains a space
+  1381  7.4.116  'showcmd' does not show a typed space
+  8049  7.4.117  can't build with Cygwin/MingW and Perl 5.18
+  2394  7.4.118  redrawing status lines may causes recursive call
+  7060  7.4.119  Vim doesn't work well on OpenVMS
+  1702  7.4.120  (after 7.4.117) can't build with Perl 5.18 on Linux
+  1426  7.4.121  completion doesn't work for ":py3d" and ":py3f"
+  6071  7.4.122  Win32: :grep doesn't work when 'encoding' and ACP differ
+  1883  7.4.123  Win32: Getting user name does not use wide function
+  1730  7.4.124  Win32: Getting host name does not use wide function
+  1568  7.4.125  Win32: Dealing with messages may not work for multi-byte chars
+  1946  7.4.126  compiler warnings for "const" and incompatible types
+  1949  7.4.127  Perl 5.18 on Unix doesn't work
+  1948  7.4.128  Perl 5.18 for MSVC doesn't work
+  1499  7.4.129  getline(-1) returns zero
+  2064  7.4.130  relative line numbers mix up windows when using folds
+  3038  7.4.131  syncbind causes E315 errors in some situations
+  1559  7.4.132  (after 7.4.122) Win32: flags/inherit_handles args mixed up
+  2043  7.4.133  Clang warns for using NUL
+  1562  7.4.134  spurious space in MingW Makefile
+  1696  7.4.135  missing dot in MingW test Makefile
+  2314  7.4.136  (after 7.4.096) Windows: readonly when saving UNC path file
+  6184  7.4.137  cannot use IME with Windows 8 console
+  3391  7.4.138  (after 7.4.114) directory change messages are not recognized
+  2254  7.4.139  crash when using :cd in autocommand
+  5016  7.4.140  crash when autocommand wipes out only other buffer
+  2430  7.4.141  problems when building with Borland
+  4651  7.4.142  (after 7.4.137) on MS-Windows 8 IME input doen't work well
+  6310  7.4.143  TextChangedI is not triggered.
+  1480  7.4.144  MingW also supports intptr_t for OPEN_OH_ARGTYPE
+  2513  7.4.145  getregtype() does not return zero for unknown register
+  2324  7.4.146  when starting Vim with "-u NONE" v:oldfiles is NULL
+  2583  7.4.147  cursor position wrong when using "gj" after "$"
+  2554  7.4.148  cannot build with Cygwin and X1.
+ 24083  7.4.149  get E685 error when assigning a function to autoload variable
+  2596  7.4.150  :keeppatterns is not respected for :s
+ 37572  7.4.151  Python: slices with steps are not supported
+ 19610  7.4.152  Python: Cannot iterate over options
+  6150  7.4.153  compiler warning for pointer type
+  5202  7.4.154  (after 7.4.149) still a problem with auto-loading
+  2233  7.4.155  (after 7.4.150) search offset not kept with :keeppatterns
+  1466  7.4.156  test file missing from distribution
+  1643  7.4.157  error number used twice
+  4006  7.4.158  pattern containing \zs not handled correctly by substitute()
+  3819  7.4.159  completion hangs when using the current buffer after keywords
+  2026  7.4.160  Win32: Crash when executing external command
+  2296  7.4.161  crash in Python exception handling
+  1395  7.4.162  running tests in shadow dir doesn't work
+  2083  7.4.163  (after 7.4.142) MS-Windows 7 input doesn't work properly
+  2050  7.4.164  problem with event handling on Windows 8
+  2313  7.4.165  by default, after closing a buffer changes can't be undone
+  1685  7.4.166  auto-loading a function for code that won't be executed
+  7150  7.4.167  (after 7.4.149) fixes are not tested
+  2549  7.4.168  can't compile with Ruby 2.1.0
+  1656  7.4.169  ":sleep" puts cursor in the wrong column
+  3474  7.4.170  some help tags don't work with ":help"
+ 21030  7.4.171  redo does not set v:count and v:count1
+  9545  7.4.172  blowfish code says OFB, but it's doing CFB
+  2110  7.4.173  when using scrollbind the cursor can end up below last line
+  2945  7.4.174  compiler warnings for Python interface
+  5133  7.4.175  wrong fall-back to non-wide function if wide function fails
+  2606  7.4.176  Python: Dictionary.update() thows an unexpected error
+  1491  7.4.177  compiler warning for unused variable
+  1957  7.4.178  the J command does not update '[ and '] marks
+  1675  7.4.179  Compiler warning for type-punned pointer
+  2650  7.4.180  (after 7.4.174) older Python versions don't support %ld
+  1947  7.4.181  when using 'pastetoggle' the status lines are not updated
+  1916  7.4.182  building with mzscheme and racket does not work
+  1493  7.4.183  MSVC Visual Studio update not supported
+  5677  7.4.184  match() does not work properly with a {count} argument
+  1837  7.4.185  Clang gives warnings
+  5437  7.4.186  (after 7.4.085) Visual mode insert mode is sometimes wrong
+  3991  7.4.187  delete that crosses line break splits multi-byte character
+ 19236  7.4.188  SIZEOF_LONG clashes with similar defines in header files
+  1429  7.4.189  compiler warning for unused argument
+  2139  7.4.190  compiler warning for using %lld for off_t
+ 27520  7.4.191  can't escape a file name for shell commands without a function
+  1329  7.4.192  memory leak when giving E853
+  3561  7.4.193  typos in messages
+  1829  7.4.194  can't build for Android
+  7729  7.4.195  (after 7.4.193) Python tests fail
+  1651  7.4.196  tests fail on Solaris 9 and 10
+ 34900  7.4.197  various problems on VMS
+  3101  7.4.198  can't build with non-threding Perl and dynamic loading
+  2946  7.4.199  (issue 197) ]P doesn't paste over Visual selection
+  1817  7.4.200  too many #ifdefs in the code
+  7626  7.4.201  'lispwords' is a global option
+  7151  7.4.202  MS-Windows: non-ASCII font names don't work
+  7124  7.4.203  parsing 'errorformat' is not correct
+  3446  7.4.204  a mapping where the second byte is 0x80 doesn't work
+  2953  7.4.205  ":mksession" does not handle the argument list correctly
+  2217  7.4.206  compiler warnings on 64 bit Windows
+  4843  7.4.207  cursor report sometimes not recognized causing replace mode
+  1112  7.4.208  Mercurial picks up files that are not distributed (empty)
+  1924  7.4.209  when repeating a filter command "%" and "#" are expanded
+  3997  7.4.210  Visual block mode + virtual edit doesn't work well with tabs
+  2404  7.4.211  ":lu" is abbreviation for ":lua", but it should be ":lunmap"
+137444  7.4.212  #ifdefs for the +visual feature are not useful
+  6508  7.4.213  it's not possible to open a new buffer without a swapfile
+  1523  7.4.214  compilation problems on HP_nonStop (Tandem)
+  3488  7.4.215  ":sp foo" reloads "foo" if it is the current buffer
+  1922  7.4.216  compiler warnings
+  3225  7.4.217  "make clean" may run configure pointlessly
+ 19321  7.4.218  it's not easy to remove duplicates from a list
+  2890  7.4.219  redraw too often when 'relativenumber' or 'cursorline' set
+  4640  7.4.220  test 105 does not work in a shadow dir
+  1755  7.4.221  quickfix doesn't resize on ":copen 20"
+  3882  7.4.222  the Ruby directory is constructed from parts
+220004  7.4.223  still using an older autoconf version
+  7317  7.4.224  /usr/bin/grep on Solaris does not support -F
+  2702  7.4.225  dynamic Ruby doesn't work on Solaris
+  3535  7.4.226  (after 7.4.219) cursorline highlight not always redrawn
+  2832  7.4.227  (after 7.4.225) can't build with Ruby 1.8
+  6200  7.4.228  compiler warnings when building with Python 3.2
+  3782  7.4.229  ":let" fails when listing vars with a curly braces expression
+  1673  7.4.230  error when using ":options"
+  9286  7.4.231  an error in ":options" is not caught by the tests
+  3599  7.4.232  ":%s/\n//" uses a lot of memory
+  2222  7.4.233  escaping special chars in ":!cmd %" is inconsistant
+  3017  7.4.234  can't get the command that was used to start Vim
+ 16436  7.4.235  it is not easy to get the full path of a command
+  5191  7.4.236  it's not that easy to check the Vim patch version
+  4893  7.4.237  (after 7.4.236) has() not checking for specific patch
+ 14829  7.4.238  Vim does not support the smack library
+  1714  7.4.239  ":e +" does not position cursor at end of the file
+  1676  7.4.240  ":tjump" shows "\n" as "\\n"
+ 12078  7.4.241  submatch() does not distinguish between a NL and a NUL
+ 15570  7.4.242  getreg() does not distinguish between a NL and a NUL character
+ 32738  7.4.243  cannot use setreg() to add text that includes a NUL
+  1807  7.4.244  (after 7.4.238) the smack feature causes stray error messages
+  1874  7.4.245  crash for "vim -u NONE -N  -c '&&'"
+  3736  7.4.246  configure message for detecting smack are out of sequence
+  5838  7.4.247  NUL and NL mixed up when giving input to system()
+ 13519  7.4.248  cannot distinguish between NL and NUL in output of system()
+  6037  7.4.249  using setreg() with a list of numbers does not work
+  1641  7.4.250  some test files missing from distribution
+  4570  7.4.251  crash when BufAdd autocommand wipes out the buffer
+  1446  7.4.252  critical error in GTK, removing timer twice
+  2643  7.4.253  crash when using external reference in syntax regexp 
+  5407  7.4.254  smack support detection is incomplete
+  3397  7.4.255  configure check for smack doesn't work with all shells
+  2252  7.4.256  (after 7.4.248) systemlist() does not work properly
+  1948  7.4.257  compiler warning, possibly for mismatch in parameter name
+  5726  7.4.258  configure fails if $CC contains options
+  1554  7.4.259  warning for misplaced "const"
+  8693  7.4.260  no error for function name with colon or lowercase char
+  2863  7.4.261  an interactive :s to replace a "\n" with line break may fail
+  9779  7.4.262  duplicate code in regexec()
+  1306  7.4.263  GCC 4.8 compiler warning for hiding a declaration
+  5143  7.4.264  (after 7.4.260) can't define function g:Foo()
+  4813  7.4.265  (after 7.4.260) can't call function with "g:" in an expression
+  1347  7.4.266  test 62 fails
+ 13880  7.4.267  (after 7.4.178) '[ mark is in the wrong position after "gq"
+  3312  7.4.268  exists() on a funcref for script-local function does not work
+  6283  7.4.269  CTRL-U in Insert mode does not work after using a cursor key
+  1947  7.4.270  comparing pointers instead of the string they point to
+  1457  7.4.271  compiler warning on 64 bit windows
+  4216  7.4.272  using just "$" does not cause an error message
+  2136  7.4.273  "make autoconf/reconfig" may run configure pointlessly
+  1522  7.4.274  check for timestamp does not always detect a changed file
+  1747  7.4.275  no error message when changing type of unplaced sign
+  8604  7.4.276  the fish shell is not supported
+  2243  7.4.277  using ":sign unplace *" may leave the cursor in wrong position
+  5402  7.4.278  list_remove() conflicts with Sun header file
+ 18280  7.4.279  globpath() returns a string, a list would be better
+  3504  7.4.280  relative position of cursor not restored if session has 2 tabs
+  2486  7.4.281  positions are off when loading session with two tabpages
+  1429  7.4.282  (after 7.4.279) test 97 fails on Mac
+  1771  7.4.283  (after 7.4.276) compiler warning about unused variable
+  1727  7.4.284  setting 'langmap' in the modeline can cause trouble
+  1549  7.4.285  line numbers are not always updated for 'relativenumber'
+  1610  7.4.286  error messages are inconsistant
+  1394  7.4.287  patches for .hgignore don't work
+  1397  7.4.288  when 'spellfile' is set the screen is not redrawn
+  3604  7.4.289  NFA regexp with repeated backreference does not match
+  6261  7.4.290  a non-greedy match followed by a branch is too greedy
+  1650  7.4.291  compiler warning for int to pointer of different size
+  4141  7.4.292  pattern "a" matches accented "a" when pattern is one byte
+  9143  7.4.293  can't ignore composing characters in a pattern
+  4480  7.4.294  (after 7.4.293) test files missing from patch
+  5287  7.4.295  various typos, bad white space and unclear comments
+  1927  7.4.296  can't run tests on Solaris
+  2593  7.4.297  memory leak from result of get_isolated_shell_name()
+  1789  7.4.298  can't have a funcref start with "t:"
+ 19202  7.4.299  when running configure twice DYNAMIC_PYTHON_DLL becomes empty
+  2262  7.4.300  the way config.cache is removed doesn't always work
+  1651  7.4.301  (after 7.4.280) scrolling problem when loading a session file
+  2241  7.4.302  signs don't show up after filler lines
+  2182  7.4.303  double-width chars on the command line sometimes truncated
+  1559  7.4.304  cannot always use Python with Vim
+  7820  7.4.305  making 'ttymouse' empty causes problems
+  2660  7.4.306  getchar(0) does not return Esc
+  4150  7.4.307  can't build without the +termresponse feature
+  1420  7.4.308  ":diffsplit" on empty file cursor is displayed on command line
+  2095  7.4.309  increasing size of lower window, upper window jumps to the top
+ 11194  7.4.310  getpos()/setpos() don't include curswant
+  4740  7.4.311  can't use winrestview to only restore part of the view
+  6272  7.4.312  cannot know what argument list is being used for a window
+ 10912  7.4.313  (after 7.4.310) changing return value of getpos() causes error
+  5875  7.4.314  completion messages can get in the way of a plugin
+  8020  7.4.315  (after 7.4.309) fixes for computation of topline not tested
+  1537  7.4.316  warning from 64-bit compiler
+  1434  7.4.317  crash when starting gvim, issue 230
+  1748  7.4.318  fg/bg color settings ignored when checking syntax attributes
+  1764  7.4.319  crash when putting zero bytes on the clipboard
+  4439  7.4.320  possible crash when an BufLeave autocommand deletes the buffer
+  2515  7.4.321  can't build with strawberry perl 5.20 + mingw-w64-4.9.0
+  3274  7.4.322  using "msgfmt" is hard coded, cannot use "gmsgfmt"
+  2898  7.4.323  substitute() with zero width pattern breaks multi-byte char
+  4631  7.4.324  in Ex mode, cyrillic characters are not handled
+  2070  7.4.325  incorrect display when starting GUI and setting 'laststatus'
+  1384  7.4.326  can't build Tiny version
+  4330  7.4.327  when 'verbose' is set may get E724 repeatedly
+  2580  7.4.328  selection of inner block is inconsistent
+  1945  7.4.329  window not scrolled if moving cursor and go to another window
+ 32746  7.4.330  using regexp pattern to show a position match can be slow
+  1506  7.4.331  relative numbering not updated after a linewise yank
+  4079  7.4.332  GTK: ugly gaps when a sign icon doesn't fit exactly
+  2036  7.4.333  compiler warning for unused function
+  3295  7.4.334  (after 7.4.330) unitialized variables, causing some problems
+  3313  7.4.335  no digraph for the new rouble sign
+  3536  7.4.336  setting 'history' to a big value causes out-of-memory errors
+  1589  7.4.337  can't execute command line if there was an error before
+ 52480  7.4.338  cannot wrap lines taking indent into account
+  2655  7.4.339  local function is available globally
+  3140  7.4.340  error from sed about illegal bytes when installing Vim
+  6001  7.4.341  sort() doesn't handle numbers well
+  1988  7.4.342  clang gives warnings
+  1850  7.4.343  matchdelete() does not always update the right lines
+  5304  7.4.344  small issues related to matchaddpos()
+  2618  7.4.345  (after 7.4.338) indent is not updated when deleting indent
+  1963  7.4.346  (after 7.4.338) indent is not updated when changing 'briopt'
+  3209  7.4.347  test55 fails on some systems
+  1738  7.4.348  Using "J1" in 'cinoptions' may cause too much indent
+  2967  7.4.349  avoid redrawing the whole window with highlighted matches
+  3909  7.4.350  C-indenting for Javascript fails for a {} block inside parens
+  6034  7.4.351  sort() is not stable
+  2637  7.4.352  with 'linebreak' a Tab causes a missing line break
+ 14437  7.4.353  'linebreak' doesn't work with the 'list' option
+  1891  7.4.354  compiler warning
+ 21483  7.4.355  several problems with Javascript indenting
+  1247  7.4.356  mercurial does not ignore memfile_test
+  1654  7.4.357  after completion some characters are not redrawn
+  8040  7.4.358  (after 7.4.351) sort is not always stable
+  2942  7.4.359  if 'ttymouse' set to 'uxterm' xterm version is not requested
+  2461  7.4.360  pattern with "$" followed by \[vV] is not used as end-of-line
+  1487  7.4.361  flickering when filling the preview window for 'omnifunc'
+  1608  7.4.362  short length in matchaddpos() highlights until end of the line
+  4445  7.4.363  in Windows console typing 0xCE does not work
+  2425  7.4.364  no error message when the viminfo file can't be renamed
+  3973  7.4.365  crash when using ":botright split" when there isn't much space
+  1602  7.4.366  can't run the linebreak test on MS-Windows
+  2165  7.4.367  (after 7.4.357) other solution for redrawing after completion
+  2581  7.4.368  window sizes not restored properly when closing cmdline window
+  2331  7.4.369  using freed memory when exiting while compiled with EXITFREE
+  9476  7.4.370  linebreak test fails when encoding is not utf-8
+  1880  7.4.371  with 'linebreak' set control characters displayed wrong
+  5628  7.4.372  with 'winminheight' zero current window might be zero height
+  2668  7.4.373  compiler warning for unused argument and unused variable
+  2461  7.4.374  character after "fb" command sometimes not mapped
+  1967  7.4.375  test 63 fails when run with GUI-only Vim
+  1877  7.4.376  (after 7.4.367) popup menu flickers too much
+  4200  7.4.377  with 'equalalways' set a split may report "no room"
+  9720  7.4.378  title of quickfist list is not kept for setqflist(list, 'r')
+  1382  7.4.379  accessing freed memory after using setqflist(list, 'r')
+  3324  7.4.380  loading python may cause Vim to exit
+  1359  7.4.381  u_undo error when backspacing in Insert mode deletes 2 lines
+  1876  7.4.382  mapping chars may not work after typing Esc in Insert mode
+  1744  7.4.383  bad interaction between preview window and omnifunc
+  1522  7.4.384  test 102 fails when compiled with small features
+  2559  7.4.385  when building with tiny/small features .mo files build fails
+  5536  7.4.386  when splitting a window the changelist position is wrong
+  6083  7.4.387  "4gro" replaces one character then executes "ooo"
+  2972  7.4.388  with 'linebreak' set and 'list' unset Tab not counted properly
+ 13930  7.4.389  still sometimes Vim enters Replace mode when starting up
+  1411  7.4.390  advancing pointer over end of a string
+  3316  7.4.391  no 'cul' highlight with cursor on a line with diff highlight
+  2701  7.4.392  not easy to detect type of command line window
+ 53004  7.4.393  text drawing on newer MS-Windows systems is suboptimal
+  1890  7.4.394  (after 7.4.393) with DirectX last italic char is incomplete
+  2600  7.4.395  C indent wrong below an if with wrapped () followed by {}
+  8881  7.4.396  when 'clipboard' is "unnamed", :g/pat/d is very slow
+  5060  7.4.397  matchparen only uses the topmost syntax item
+  1533  7.4.398  (after 7.4.393) gcc error for argument of InterlockedIncrement
+136047  7.4.399  crypt implementation is messy; blowfish crypt has a weakness
+  1848  7.4.400  list of distributed files is incomplete
+  8581  7.4.401  (after 7.4.399) new files missing in Makefiles
+  2992  7.4.402  test 72 crashes under certain conditions
+  4049  7.4.403  valgrind reports errors when running test 72
+  3009  7.4.404  Windows 64 bit compiler warnings
+  3787  7.4.405  screen updating is slow when using matches
+  2544  7.4.406  test 72 and 100 fail on MS-Windows
+  3126  7.4.407  Visual block insert with cursor move repeats the wrong text
+  9336  7.4.408  Visual block insert breaks a multi-byte character
+  4404  7.4.409  can't build with Perl on Fedora 20
+  1964  7.4.410  fold does not open after search with CmdwinLeave autocmd
+  3353  7.4.411  "foo bar" sorts before "foo" with sort()
+  2823  7.4.412  can't build on Windows XP with MSVC
+  3241  7.4.413  MS-Windows: inserting dead key does not always work
+  5384  7.4.414  cannot define a command only when it's used
+  2015  7.4.415  (after 7.4.414) cannot build, warning for shadowed variable
+  2977  7.4.416  problem with breakindent/showbreak and tabs
+  4376  7.4.417  minimum width used for breakindent is not set after split
+  1727  7.4.418  when leaving ":append" the cursor shape is like in Insert mode
+  3294  7.4.419  when part of a list is locked it's possible to make changes
+  2044  7.4.420  it's not obvious how to add a new test
+  3521  7.4.421  crash when searching for "\ze*"
+  3205  7.4.422  with conceal + linebreak some text is not displayed correctly
+  3565  7.4.423  expand("$shell") does not work as documented
+  1793  7.4.424  ml_get error when using Python to delete lines in a buffer
+  2453  7.4.425  when 'showbreak' is used "gj" may move to the wrong position
+  1333  7.4.426  README File missing from list of files
+  3287  7.4.427  system() typeahead may be echoed and mess up the display
+  2926  7.4.428  executable() may return a wrong result on MS-Windows
+  1384  7.4.429  build fails with fewer features
+  1634  7.4.430  test_listlbr fails when compiled with normal features
+  1599  7.4.431  compiler warning
+  3119  7.4.432  MS-Windows: setting 'encoding' does not convert arguments
+  2110  7.4.433  test 75 fails on MS-Windows
+  4131  7.4.434  gettabvar() is not consistent with getwinvar() and getbufvar()
+  1863  7.4.435  line formatting behaves differently when 'linebreak' is set
+  1470  7.4.436  ml_get error for autocommand that moves the cursor
+  3229  7.4.437  new and old regexp engine are not consistent
+  1372  7.4.438  cached values for 'cino' not reset for ":set all&"
+  1655  7.4.439  duplicate message in message history
+  2106  7.4.440  omni complete popup drawn incorrectly
+  1826  7.4.441  endless loop and other problems when 'cedit' is set to CTRL-C
+  2303  7.4.442  (after 7.4.434) using unitinialized variable
+  1539  7.4.443  error reported by ubsan when running test 72
+  1544  7.4.444  reversed question mark not recognized as punctuation
+  2549  7.4.445  clipboard may be cleared on startup
+  7513  7.4.446  environment for executing autocommand may not be restored
+  4082  7.4.447  spell files from Hunspell may generate a lot of errors
+  2691  7.4.448  MS-Windows: Using ETO_IGNORELANGUAGE causes problems
+  3740  7.4.449  can't easily close the help window
+ 14932  7.4.450  some commands that edit another buffer don't support +cmd
+  1851  7.4.451  calling system() with empty input gives an error
+  1611  7.4.452  can't build with tiny features
+  1409  7.4.453  still can't build with tiny features
+  2495  7.4.454  CTRL-W-] does not work when using a Visual selection
+  5104  7.4.455  completion for :buf does not use 'wildignorecase'
+ 12212  7.4.456  'backupcopy' is global, can't set a local value
+  1513  7.4.457  cannot recognize getchar() returning K_CURSORHOLD
+  1633  7.4.458  issue 252: Cursor moves in a zero-height window
+  1470  7.4.460  (after 7.4.454) can't build without the quickfix feature
+  2497  7.4.461  MS-Windows: When collate is on the number of copies is too high
+  2454  7.4.462  Setting the local value of 'backupcopy' empty gives an error
+  1844  7.4.463  tests 86 and 87 may hang on MS-Windows
+  1536  7.4.464  (after 7.4.459) compiler warning
+  1588  7.4.465  crash when expanding a very long string
+  1576  7.4.466  (after 7.4.460) CTRL-W } does not open preview window
+  4117  7.4.467  'linebreak' does not work well together with Visual mode
+  1892  7.4.469  (after 7.4.467) can't build with MSVC
+  4675  7.4.470  test 11 and 100 do not work properly on Windows
+  2350  7.4.471  MS-Windows: multi-byte printer name is displayed as ???
+  1527  7.4.472  drawing "precedes" entry of 'listchar' when 'list' is not set
+  1554  7.4.473  cursor position incorrect with number column and 'sbr'
+  1293  7.4.474  AIX compiler can't handle // comment
+  7374  7.4.475  can't compile if Xutf8SetWMProperties() is not in X11 library
+  2408  7.4.476  MingW: compiling with "XPM=no" doesn't work
+  1666  7.4.477  ":%diffput" adds an empty line if the other file is empty
+  1763  7.4.478  using byte length instead of character length for 'showbreak'
+  3025  7.4.479  MS-Windows: The console title can be wrong
+  2962  7.4.480  (after 7.4.479) MS-Windows: Can't build
+  2035  7.4.481  (after 7.4.471) compiler warning on MS-Windows
+  1863  7.4.482  when 'balloonexpr' results in a list, text has a trailing NL
+  5345  7.4.483  a 0x80 byte is not handled correctly in abbreviations
+  1442  7.4.484  (after 7.4.483) compiler warning
+  3033  7.4.485  (after 7.4.484) abbreviations don't work
+  6864  7.4.486  check for writing to a yank register is wrong
+  5994  7.4.487  ":sign jump" may unnecessarily use another window
+  1394  7.4.488  test_mapping fails for some people
+  1610  7.4.489  cursor movement wrong when 'lbr' with a number column
+  6856  7.4.490  cannot specify the buffer to use for "do" and "dp"
+  1907  7.4.491  negative "topline" value for winrestview() has display errors
+  2917  7.4.492  Ctrl-O in Insert mode moves right after insert comment leader
+  1686  7.4.493  a TextChanged autocommand is triggered when saving a file
+  1968  7.4.494  cursor shape is wrong after a CompleteDone autocommand
+  2484  7.4.495  XPM isn't used correctly in the Cygwin Makefile
+ 78227  7.4.496  many lines are both in Make_cyg.mak and Make_ming.mak
+118187  7.4.497  NFA engine is very slow with some regexp patterns
+  1770  7.4.498  (after 7.4.497) typo in DOS makefile
+  2341  7.4.499  substitute() can be slow with long strings
+  1991  7.4.500  test 72 still fails once in a while
+  1577  7.4.501  (after 7.4.497) typo in file pattern
+  6672  7.4.502  language mapping also applies to mapped characters
+  6560  7.4.503  cannot append a list of lines to a file
+  2930  7.4.504  MS-Windows installer restricts install path to end in "vim"
+  2125  7.4.505  problem on MS-Windows file name longer than MAX_PATH bytes
+  1680  7.4.506  MS-Windows: Cannot open a file with 259 characters
+  2027  7.4.507  (after 7.4.496) building with MingW and Perl may fail
+  1928  7.4.508  when generating ja.sjis.po, header is not correctly adjusted
+  3558  7.4.509  users are not aware their encryption is weak
+  2508  7.4.510  "-fwrapv" argument breaks use of cproto
+  1938  7.4.511  generating proto for if_ruby.c uses type not defined elsewhere
+  3016  7.4.512  cannot generate prototypes for Win32 files and VMS
+  1408  7.4.513  crash because reference count is wrong for list from getreg()
+  1444  7.4.514  (after 7.4.492) memory access error
+  6056  7.4.515  in a help buffer the global 'foldmethod' is used
+  2134  7.4.516  issue 253: completing function name with a # does not work
+  1653  7.4.517  cursor may not end up in the right place on a wrapping line
+  1705  7.4.518  using status line height in width computations
+ 26031  7.4.519  (after 7.4.497) crash when using syntax highlighting
+  1629  7.4.520  Sun PCK locale is not recognzed
+  1687  7.4.521  when using "vep" a mark is moved to the next line
+  1489  7.4.522  specifying wrong buffer size for GetLongPathName()
+  2626  7.4.523  copy/paste no longer works is X11 server is restarted
+  3292  7.4.524  when using ":ownsyntax" spell checking is messed up
+  2460  7.4.525  map() leaks memory when there is an error in the expression
+  5139  7.4.526  matchstr() fails on long text
+  3709  7.4.527  still confusing regexp failure and NFA_TOO_EXPENSIVE
+  1892  7.4.528  crash when using matchadd()
+  7307  7.4.529  no test for what 7.4.517 fixes
+147087  7.4.530  many commands take count/range that is not using line numbers
+  3706  7.4.531  comments about parsing an Ex command are wrong
+  4239  7.4.532  when using 'incsearch' "2/pattern/e" highlights first match
+  6017  7.4.533  ":hardcopy" leaks memory in case of errors
+  2827  7.4.534  warnings when compiling if_ruby.c
+ 10090  7.4.535  (after 7.4.530) can't build with tiny features
+  1915  7.4.536  test 63 fails when using a black&white terminal
+  3897  7.4.537  value of v:hlsearch reflects an internal variable
+  5830  7.4.538  tests fail with small features plus Python
+  7422  7.4.539  (after 7.4.530) crash when computing buffer count
+  1802  7.4.540  (after 7.4.539) cannot build with tiny and small features
+  2795  7.4.541  crash when doing a range assign
+ 28576  7.4.542  cannot specify the type of range for a user command
+  4114  7.4.543  (after 7.4.232) "1,3s/\n//" joins two lines instead of three
+  1655  7.4.544  warnings for unused arguments with a combination of features
+  1983  7.4.545  highlighting for multi-line matches is not correct
+  4044  7.4.546  repeated use of vim_snprintf() with a number
+  1785  7.4.547  "vit" does not select multi-byte character at the end correctly
+  1681  7.4.548  compilation fails with native version of MinGW-w64
+  6505  7.4.549  function name not recognized correctly when inside a function
+  4016  7.4.550  curs_rows() function is always called with 2nd argument false
+  5608  7.4.551  "ygn" may yank too much; Issue 295
+  2298  7.4.552  langmap applies to Insert mode expression mappings
+ 14152  7.4.553  various small issues
+  1877  7.4.554  missing part of patch 7.4.519
+  1970  7.4.555  test_close_count may fail for some combination of features
+  2121  7.4.556  failed commands in Python interface not handled correctly
+  1997  7.4.557  one more small issue
+  1690  7.4.558  when the X server restarts Vim may get stuck
+  3549  7.4.559  block append inside tab is wrong when virtualedit is set
+  5331  7.4.560  memory leak using :wviminfo; Issue 296
+  3743  7.4.561  Ex range handling is wrong for buffer-local user commands
+  2165  7.4.562  segfault with wide screen and error in 'rulerformat'
+  2129  7.4.563  no test for replacing on a tab in Virtual replace mode
+  7046  7.4.564  FEAT_OSFILETYPE is used even though it's never defined
+ 10949  7.4.565  some ranges are not checked to be valid
+ 19788  7.4.566  :argdo, :bufdo, :windo and :tabdo don't take a range
+  1571  7.4.567  non-ascii vertical separater characters are always redrawn
+  2093  7.4.568  giving an error for ":0wincmd w" is a problem for some plugins
+  5096  7.4.569  having CTRL-C interrupt does not check the mapping mode
+  4492  7.4.570  building with dynamic library does not work for Ruby 2.2.0
+  1821  7.4.571  can't build with tiny features
+  6076  7.4.572  address type of :wincmd depends on the argument
+  2979  7.4.573  mapping CTRL-C in Visual mode doesn't work
+  2177  7.4.574  no error for eval('$')
+ 16995  7.4.575  Unicode character properties are outdated
+  4671  7.4.576  redrawing problem with 'relativenumber' and 'linebreak'
+  2595  7.4.577  matching with virtual column has overhead on very long lines
+  1647  7.4.578  after "$" in an empty line getcurpos() returns negative number
+  5369  7.4.579  wrong cursor positioning when 'linebreak' set and lines wrap
+  1513  7.4.580  ":52wincmd v" still gives an invalid range error
+  1773  7.4.581  compiler warnings for unitinialized variables
+  3876  7.4.582  (after 7.4.577) can't match "%>80v" properly
+  1391  7.4.583  with tiny features test 16 may fail
+  2093  7.4.584  with tiny features test_command_count may fail
+  3336  7.4.585  range for :bdelete does not work
+  1324  7.4.586  parallel building of documentation html files is not reliable
+  7106  7.4.587  conceal does not work properly with 'linebreak'
+  6287  7.4.588  ":0argedit foo" puts the new argument in the second place
+  1927  7.4.589  MS-Windows console: Vim can't handle greek utf-8 characters
