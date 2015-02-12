@@ -2,7 +2,13 @@
 %if %{?WITH_SELINUX:0}%{!?WITH_SELINUX:1}
 %define WITH_SELINUX 1
 %endif
+
+%if %{?rhel}%{!?rhel:0} <= 5
+%define desktop_file 0
+%else
 %define desktop_file 1
+%endif
+
 %if %{desktop_file}
 %define desktop_file_utils_version 0.2.93
 %endif
@@ -691,10 +697,19 @@ Patch3012: vim-7.3-manpage-typo-668894-675480.patch
 Patch3013: vim-manpagefixes-948566.patch
 Patch3014: vim-7.4-licensemacro-1151450.patch
 
+Patch4001: vim-7.4-old-actypes.patch
+
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: python-devel ncurses-devel gettext perl-devel
+BuildRequires: python-devel ncurses-devel gettext
 BuildRequires: perl(ExtUtils::Embed) perl(ExtUtils::ParseXS)
 BuildRequires: libacl-devel gpm-devel autoconf
+
+%if %{?rhel}%{!?rhel:0} <= 5
+BuildRequires: perl
+%else
+BuildRequires: perl-devel
+%endif
+ 
 %if %{WITH_SELINUX}
 BuildRequires: libselinux-devel
 %endif
@@ -1474,6 +1489,10 @@ perl -pi -e "s,bin/nawk,bin/awk,g" runtime/tools/mve.awk
 %patch3013 -p1
 %patch3014 -p1
 
+%if %{?rhel}%{!?rhel:0} <= 5
+%patch4001 -p1
+%endif
+
 %build
 cp -f %{SOURCE5} .
 cd src
@@ -1499,7 +1518,12 @@ perl -pi -e "s/\/etc\/vimrc/\/etc\/virc/"  os_unix.h
   --disable-selinux \
 %endif
   --disable-pythoninterp --disable-perlinterp --disable-tclinterp \
-  --with-tlib=tinfo --enable-gui=no --disable-gpm --exec-prefix=/ \
+%if %{?rhel}%{!?rhel:0} <= 5
+  --with-tlib=ncurses \
+%else
+  --with-tlib=tinfo \
+%endif 
+  --enable-gui=no --disable-gpm --exec-prefix=/ \
   --with-compiledby="<bugzilla@redhat.com>" \
   --with-modified-by="<bugzilla@redhat.com>"
 
@@ -1515,7 +1539,11 @@ mv -f ex_cmds.c.save ex_cmds.c
   --enable-perlinterp \
   --disable-tclinterp --with-x=yes \
   --enable-xim --enable-multibyte \
+%if %{?rhel}%{!?rhel:0} <= 5
+  --with-tlib=ncurses \
+%else
   --with-tlib=tinfo \
+%endif 
   --enable-gtk2-check --enable-gui=gtk2 \
   --with-compiledby="<bugzilla@redhat.com>" --enable-cscope \
   --with-modified-by="<bugzilla@redhat.com>" \
@@ -1551,7 +1579,11 @@ make clean
  --with-x=no \
  --enable-gui=no --exec-prefix=%{_prefix} --enable-multibyte \
  --enable-cscope --with-modified-by="<bugzilla@redhat.com>" \
- --with-tlib=tinfo \
+%if %{?rhel}%{!?rhel:0} <= 5
+  --with-tlib=ncurses \
+%else
+  --with-tlib=tinfo \
+%endif
  --with-compiledby="<bugzilla@redhat.com>" \
 %if "%{withnetbeans}" == "1"
   --enable-netbeans \
